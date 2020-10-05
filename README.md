@@ -69,6 +69,12 @@ yes
 Perform SCC operations
 
 Run the ./perform-scc-operations.sh to perform the following actions:
+* Steps -  https://github.com/Microsoft/steps
+* Places - https://github.com/Microsoft/places
+* Tracks - https://github.com/Microsoft/tracks
+* Activities - https://github.com/Microsoft/activities
+* Recorder - https://github.com/Microsoft/recorder
+
 • Create isva and openldap SA
 • Create isva-scc SCC
 • Allow isva SA to use the isva-scc SCC
