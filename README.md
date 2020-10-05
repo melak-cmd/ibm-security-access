@@ -6,7 +6,7 @@ Create SCC (Security Context Constraint)
 
 Determine required permissions :
 
-```
+```bash
 $ oc get scc
 Error from server (Forbidden): securitycontextconstraints.security.openshift.io is forbidden: User "XXX" cannot list resource "securitycontextconstraints" in API group "security.openshift.io" at the cluster scope
 ```
@@ -16,7 +16,7 @@ list securitycontextconstraints.
 
 This is useful command which can tell you if you can create scc:
 
-```
+```bash
 $ oc auth can-i create scc
 Warning: resource 'securitycontextconstraints' is not namespace scoped in group 'security.openshift.io'
 no
@@ -24,7 +24,7 @@ no
 
 and a command to tell you who can create scc :
 
-```
+```bash
 kmela@GITG07WE097:~/repos/melak-cmd/isva$ oc adm policy who-can create scc
 resourceaccessreviewresponse.authorization.openshift.io/<unknown> 
 
@@ -48,17 +48,17 @@ Groups: system:cluster-admins
 
 Login with right user 
 
-```
+```bash
 oc login --token=$TOKEN --server=$SERVER -n isav-lab
 ```
 
 Or
 
-```
+```bash
 oc login -u system:admin -n isav-lab
 ```
 
-```
+```bash
 $ oc whoami
 xxx
 $ oc auth can-i create scc
@@ -68,19 +68,13 @@ yes
 
 Perform SCC operations
 
-Run the ./perform-scc-operations.sh to perform the following actions:
-* Steps -  https://github.com/Microsoft/steps
-* Places - https://github.com/Microsoft/places
-* Tracks - https://github.com/Microsoft/tracks
-* Activities - https://github.com/Microsoft/activities
-* Recorder - https://github.com/Microsoft/recorder
+Run the 'perform-scc-operations.sh' to perform the following actions:
+* Create isva and openldap SA
+* Create isva-scc SCC
+* Allow isva SA to use the isva-scc SCC
+* Allow openldap SA to use the built-in anyuid SCC
 
-• Create isva and openldap SA
-• Create isva-scc SCC
-• Allow isva SA to use the isva-scc SCC
-• Allow openldap SA to use the built-in anyuid SCC
-
-```
+```bash
 $ ./deploy/perform-scc-operations.sh 
 
 Create isva & openldap SA
@@ -102,13 +96,13 @@ Import OpenShift Templates which describe the objects required to deploy an Secu
 
 The templates will be deployed at the project level as an end user. Login to oc command-line as the developer user
 
-```
+```bash
 oc login --token=$TOKEN --server=$SERVER -n isav-lab
 ```
 
 Or
 
-```
+```bash
 oc login -u user:developer -n isav-lab
 ```
 
@@ -126,7 +120,7 @@ The template also creates two Secrets:
 • A Secret containing the information required by non-configuration components to communicate with
 the configuration service.
 
-```
+```bash
 ```
 
 Access Manager Reverse Proxy Template
@@ -135,5 +129,5 @@ One instance of this template is deployed for each Reverse Proxy to be deployed.
 
 This template creates a deployment for an Access Manager Reverse Proxy instance. 
 
-```
+```bash
 ```
